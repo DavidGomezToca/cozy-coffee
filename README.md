@@ -1,6 +1,6 @@
 # _COZY COFFEE_
 
-![THUMBNAIL](resources/images/Thumbnail.png)
+![THUMBNAIL](resources/img/Thumbnail.png)
 
 - **Description :**
 
