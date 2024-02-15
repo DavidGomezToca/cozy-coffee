@@ -1,7 +1,8 @@
-import { categories } from "../data/categories";
 import Categorie from "./Categorie";
+import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Sidebar() {
+  const { categories } = useCozyCoffee();
   return (
     <aside className="md:w-72">
       <div className="p-4">
