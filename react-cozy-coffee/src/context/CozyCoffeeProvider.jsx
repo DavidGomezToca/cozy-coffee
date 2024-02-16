@@ -4,13 +4,14 @@ import { categories as categoriesDB } from "../data/categories";
 const CozyCoffeeContext = createContext();
 const CozyCoffeeProvider = ({ children }) => {
   const [categories, setCategories] = useState(categoriesDB);
-  const [currentCategorie, setCurrentCategorie] = useState(categories[0]);
-  const handleClickCategorie = () => {
-    console.log("Click on to Categorie");
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const handleClickCategory = (id) => {
+    const category = categories.filter((category) => category.id === id)[0];
+    setCurrentCategory(category);
   };
   return (
     <CozyCoffeeContext.Provider
-      value={{ categories, currentCategorie, handleClickCategorie }}
+      value={{ categories, currentCategory, handleClickCategory }}
     >
       {children}
     </CozyCoffeeContext.Provider>

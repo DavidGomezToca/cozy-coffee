@@ -1,4 +1,4 @@
-import Categorie from "./Categorie";
+import Category from "./Category";
 import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Sidebar() {
@@ -13,8 +13,8 @@ export default function Sidebar() {
         />
       </div>
       <div className="mt-10">
-        {categories.map((categorie) => (
-          <Categorie key={categorie.id} categorie={categorie} />
+        {categories.map((category) => (
+          <Category key={category.id} category={category} />
         ))}
       </div>
       <div className="my-5 px-5">
