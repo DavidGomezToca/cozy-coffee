@@ -3,6 +3,7 @@ import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Sidebar() {
   const { categories } = useCozyCoffee();
+
   return (
     <aside className="md:w-72">
       <div className="p-4">

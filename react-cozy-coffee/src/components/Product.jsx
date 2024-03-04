@@ -1,7 +1,10 @@
 import { formatPrice } from "../helpers";
+import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Product({ product }) {
+  const { handleClickModal, handleSetProduct } = useCozyCoffee();
   const { name, image, price } = product;
+
   return (
     <div className="border p-3 shadow bg-white">
       <img
@@ -17,6 +20,10 @@ export default function Product({ product }) {
         <button
           type="button"
           className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
+          onClick={() => {
+            handleClickModal();
+            handleSetProduct(product);
+          }}
         >
           Add
         </button>

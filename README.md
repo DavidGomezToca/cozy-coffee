@@ -36,6 +36,7 @@
   - **Laravel** : `10.42.0`
   - **TailwindCSS** : `3.4.1`
   - **React-Router-Dom** : `6.21.3`
+  - **React-Modal** : `3.16.1`
 
 ---
 

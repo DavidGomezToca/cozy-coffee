@@ -1,9 +1,13 @@
-import { products } from "../data/products";
+import { products as data } from "../data/products";
 import Product from "../components/Product";
 import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Home() {
   const { currentCategory } = useCozyCoffee();
+  const products = data.filter(
+    (product) => product.category_id === currentCategory.id
+  );
+
   return (
     <>
       <h1 className="text-4xl font-black">{currentCategory.name}</h1>
