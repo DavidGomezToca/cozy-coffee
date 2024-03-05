@@ -14,7 +14,7 @@ const products = [
         id: 2
     },
     {
-        name: "Cold Latte with Large Chocolate",
+        name: "Cold Latte with Extra Large Chocolate",
         price: 54.9,
         image: "Coffee_03",
         category_id: 1,

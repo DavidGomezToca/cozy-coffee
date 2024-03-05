@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCozyCoffee from "../hooks/useCozyCoffee";
 import { formatPrice } from "../helpers";
 
 export default function ModalProduct() {
-  const { product, handleClickModal } = useCozyCoffee();
+  const { product, handleClickModal, order, handleAddOrder } = useCozyCoffee();
   const [cantity, setCantity] = useState(1);
+  const [edition, setEdition] = useState(false);
+  useEffect(() => {
+    if (order.some((orderState) => orderState.id === product.id)) {
+      const productEdition = order.filter(
+        (orderState) => orderState.id === product.id
+      )[0];
+      setCantity(productEdition.cantity);
+      setEdition(true);
+    }
+  }, [order]);
 
   return (
     <div className="md:flex gap-10">
@@ -93,8 +103,12 @@ export default function ModalProduct() {
         <button
           type="button"
           className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
+          onClick={() => {
+            handleAddOrder({ ...product, cantity });
+            handleClickModal();
+          }}
         >
-          Add to cart
+          {edition ? "Apply changes" : "Add to order"}
         </button>
       </div>
     </div>
