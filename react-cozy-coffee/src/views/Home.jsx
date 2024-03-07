@@ -1,10 +1,18 @@
-import { products as data } from "../data/products";
+import useSWR from "swr";
 import Product from "../components/Product";
+import clientAxios from "../config/axios";
 import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Home() {
   const { currentCategory } = useCozyCoffee();
-  const products = data.filter(
+  const fetcher = () => clientAxios("/api/products").then((data) => data.data);
+  const { data, error, isLoading } = useSWR("/api/products", fetcher, {
+    refreshInterval: 1000,
+  });
+  if (isLoading) {
+    return "Loading...";
+  }
+  const products = data.data.filter(
     (product) => product.category_id === currentCategory.id
   );
 

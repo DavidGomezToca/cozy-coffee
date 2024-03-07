@@ -280,7 +280,7 @@ const products = [
         id: 40
     },
     {
-        name: "3 Chocolate Donuts",
+        name: "3 Chocolate Donuts with little Chocolates",
         price: 39.9,
         image: "Donut_08",
         category_id: 4,
@@ -308,14 +308,14 @@ const products = [
         id: 44
     },
     {
-        name: "Natural Donut",
+        name: "Caramel Donut",
         price: 19.9,
         image: "Donut_12",
         category_id: 4,
         id: 45
     },
     {
-        name: "3 Donuts With Chocolate Sprinkles",
+        name: "3 Apple Donuts",
         price: 39.9,
         image: "Donut_13",
         category_id: 4,
