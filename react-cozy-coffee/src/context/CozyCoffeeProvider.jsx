@@ -19,7 +19,6 @@ const CozyCoffeeProvider = ({ children }) => {
   }, [order]);
   const getCategories = async () => {
     try {
-      console.log();
       const { data } = await clientAxios("/api/categories");
       setCategories(data.data);
       setCurrentCategory(data.data[0]);

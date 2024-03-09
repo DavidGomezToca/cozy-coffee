@@ -6,6 +6,7 @@ import Sidebar from "../components/Sidebar";
 import Overview from "../components/Overview";
 import ModalProduct from "../components/ModalProduct";
 import useCozyCoffee from "../hooks/useCozyCoffee";
+import { useAuth } from "../hooks/useAuth";
 
 const customStyles = {
   content: {
@@ -21,6 +22,9 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export default function Layout() {
+  const { user, error } = useAuth({ middleware: "auth" });
+  console.log(user);
+  console.log(error);
   const { modal } = useCozyCoffee();
 
   return (

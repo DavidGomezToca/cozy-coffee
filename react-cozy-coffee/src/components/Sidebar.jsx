@@ -1,8 +1,10 @@
 import Category from "./Category";
 import useCozyCoffee from "../hooks/useCozyCoffee";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Sidebar() {
   const { categories } = useCozyCoffee();
+  const { logout, user } = useAuth({ middleware: "auth" });
 
   return (
     <aside className="md:w-72">
@@ -13,6 +15,7 @@ export default function Sidebar() {
           alt="Logo Cozy Coffee"
         />
       </div>
+      <p className="my-10 text-xl text-center">Hi: {user?.name}</p>
       <div className="mt-10">
         {categories.map((category) => (
           <Category key={category.id} category={category} />
@@ -22,6 +25,7 @@ export default function Sidebar() {
         <button
           type="button"
           className="text-center bg-red-500 w-full p-3 font-bold text-white truncate hover:bg-red-600"
+          onClick={logout}
         >
           Cancel Order
         </button>
