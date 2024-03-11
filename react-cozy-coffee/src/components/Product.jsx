@@ -1,14 +1,19 @@
 import { formatPrice } from "../helpers";
 import useCozyCoffee from "../hooks/useCozyCoffee";
 
-export default function Product({ product }) {
-  const { handleClickModal, handleSetProduct } = useCozyCoffee();
+export default function Product({
+  product,
+  buttonAdd = false,
+  buttonAvailable = false,
+}) {
+  const { handleClickModal, handleSetProduct, handleClickProductOutOfStock } =
+    useCozyCoffee();
   const { name, image, price } = product;
 
   return (
     <div className="border p-3 shadow bg-white">
       <img
-        src={`img/Products/${image}.jpg`}
+        src={`/img/Products/${image}.jpg`}
         className="w-full"
         alt={`${name}`}
       />
@@ -17,16 +22,27 @@ export default function Product({ product }) {
         <p className="mt-5 font-black text-4xl text-amber-500">
           {formatPrice(price)}
         </p>
-        <button
-          type="button"
-          className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
-          onClick={() => {
-            handleClickModal();
-            handleSetProduct(product);
-          }}
-        >
-          Add
-        </button>
+        {buttonAdd && (
+          <button
+            type="button"
+            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
+            onClick={() => {
+              handleClickModal();
+              handleSetProduct(product);
+            }}
+          >
+            Add
+          </button>
+        )}
+        {buttonAvailable && (
+          <button
+            type="button"
+            className="bg-indigo-600 hover:bg-indigo-800 text-white w-full mt-5 p-3 uppercase font-bold"
+            onClick={() => handleClickProductOutOfStock(product.id)}
+          >
+            Out Of Stock
+          </button>
+        )}
       </div>
     </div>
   );

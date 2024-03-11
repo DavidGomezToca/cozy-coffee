@@ -1,10 +1,16 @@
 import { formatPrice } from "../helpers";
 import useCozyCoffee from "../hooks/useCozyCoffee";
+import { useAuth } from "../hooks/useAuth";
 import OverviewProduct from "./OverviewProduct";
 
 export default function Overview() {
-  const { order, total } = useCozyCoffee();
+  const { order, total, handleSubmitNewOrder } = useCozyCoffee();
+  const { logout } = useAuth({});
   const checkOrder = () => order.length === 0;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSubmitNewOrder(logout);
+  };
 
   return (
     <aside className="w-72 h-screen overflow-y-scroll p-5">
@@ -23,7 +29,7 @@ export default function Overview() {
         Total: {""}
         {formatPrice(total)}
       </p>
-      <form className="w-full">
+      <form className="w-full" onSubmit={handleSubmit}>
         <div className="mt-5">
           <input
             type="submit"

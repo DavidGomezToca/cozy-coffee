@@ -18,8 +18,13 @@ const CozyCoffeeProvider = ({ children }) => {
     setTotal(newTotal);
   }, [order]);
   const getCategories = async () => {
+    const token = localStorage.getItem("AUTH_TOKEN");
     try {
-      const { data } = await clientAxios("/api/categories");
+      const { data } = await clientAxios("/api/categories", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setCategories(data.data);
       setCurrentCategory(data.data[0]);
     } catch (error) {
@@ -61,6 +66,58 @@ const CozyCoffeeProvider = ({ children }) => {
     setOrder(orderUpdate);
     toast.success("Deleted: " + product.name);
   };
+  const handleSubmitNewOrder = async (logout) => {
+    const token = localStorage.getItem("AUTH_TOKEN");
+    try {
+      const { data } = await clientAxios.post(
+        "/api/orders",
+        {
+          total,
+          products: order.map((product) => {
+            return {
+              id: product.id,
+              cantity: product.cantity,
+            };
+          }),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      toast.success(data.message);
+      setTimeout(() => {
+        setOrder([]);
+      }, 1000);
+      setTimeout(() => {
+        localStorage.removeItem("AUTH_TOKEN");
+        logout();
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleClickCompleteOrder = async (id) => {
+    const token = localStorage.getItem("AUTH_TOKEN");
+    try {
+      await clientAxios.put(`/api/orders/${id}`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleClickProductOutOfStock = async (id) => {
+    const token = localStorage.getItem("AUTH_TOKEN");
+    try {
+      await clientAxios.put(`/api/products/${id}`, null, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <CozyCoffeeContext.Provider
@@ -77,6 +134,9 @@ const CozyCoffeeProvider = ({ children }) => {
         handleEditCantity,
         handleDeleteOrderItem,
         total,
+        handleSubmitNewOrder,
+        handleClickCompleteOrder,
+        handleClickProductOutOfStock,
       }}
     >
       {children}

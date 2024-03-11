@@ -5,7 +5,11 @@ import useCozyCoffee from "../hooks/useCozyCoffee";
 
 export default function Home() {
   const { currentCategory } = useCozyCoffee();
-  const fetcher = () => clientAxios("/api/products").then((data) => data.data);
+  const token = localStorage.getItem("AUTH_TOKEN");
+  const fetcher = () =>
+    clientAxios("/api/products", {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((data) => data.data);
   const { data, error, isLoading } = useSWR("/api/products", fetcher, {
     refreshInterval: 1000,
   });
@@ -22,7 +26,7 @@ export default function Home() {
       <p className="text-2xl my-10">Select and customize your order below.</p>
       <div className="grid gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
-          <Product key={product.image} product={product} />
+          <Product key={product.image} product={product} buttonAdd={true} />
         ))}
       </div>
     </>
