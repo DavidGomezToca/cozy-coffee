@@ -2,13 +2,13 @@
 
 ![THUMBNAIL](resources/img/Thumbnail.png)
 
-- **Description :**
+- **DESCRIPTION :**
 
   CozyCoffee is your one-stop platform for quick and delicious food orders, ranging from mouthwatering desserts to scrumptious pizzas and burgers. With a diverse menu that caters to every craving, we offer a seamless experience for ordering your favorite fast food. Our user-friendly platform ensures a hassle-free selection and customization of your order, bringing the comfort of your favorite treats right to your doorstep. Explore a world of flavors with CozyCoffee and elevate your dining experience with just a few clicks.
 
 ---
 
-- **Installation Requirements :**
+- **INSTALLATION REQUIREMENTS :**
 
   - **Composer**
   - **Node.js**
@@ -17,7 +17,7 @@
 
 ---
 
-- **Installation Instructions :**
+- **INSTALLATION INSTRUCTIONS :**
 
   **1. composer install `cozy-coffee/laravel-cozy-coffee`**<br>
   **2. npm install `cozy-coffee/react-cozy-coffee`**<br>
@@ -29,8 +29,9 @@
 
 ---
 
-- **Stack :**
+- **STACK :**
 
+  - **Cozy Coffee** : `1.0.1`
   - **SWR** : `2.2.5`
   - **Vite** : `4.0.0`
   - **Axios** : `1.6.7`
@@ -43,6 +44,6 @@
 
 ---
 
-- **Credits :**
+- **CREDITS :**
 
   - **Author : [David Gómez](https://github.com/DavidGomezToca)**
